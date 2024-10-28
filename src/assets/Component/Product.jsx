@@ -4,6 +4,12 @@ const Product = () => {
     
 // =========variable part=============
 const[data,setData]=useState(bddata)
+const handelfiter=(brandName)=>{
+    const filterData =bddata.filter((item)=>{
+        return item.brand ===brandName
+    })
+    setData(filterData)
+}
 
 console.log(bddata)
   return (
@@ -11,18 +17,18 @@ console.log(bddata)
       <section className="product_filter mt-4 bg-slate-700">
         <div className="container">
             <div className="product_btn flex justify-around bg-yellow-700 p-4">
-                <button className='text-xl p-1 px-5 rounded-lg hover:bg-slate-400 '>All</button>
-                <button className='text-xl p-1 px-5 rounded-lg hover:bg-slate-400 '>Apple</button>
-                <button className='text-xl p-1 px-5 rounded-lg hover:bg-slate-400 '>Hp</button>
-                <button className='text-xl p-1 px-5 rounded-lg hover:bg-slate-400 '>Lenevo</button>
-                <button className='text-xl p-1 px-5 rounded-lg hover:bg-slate-400 '>Asus</button>
+                <button onClick={()=>setData(bddata)} className='text-xl p-1 px-5 rounded-lg hover:bg-slate-400 '>All</button>
+                <button onClick={()=>handelfiter('Apple')} className='text-xl p-1 px-5 rounded-lg hover:bg-slate-400 '>Apple</button>
+                <button onClick={()=>handelfiter('HP')} className='text-xl p-1 px-5 rounded-lg hover:bg-slate-400 '>Hp</button>
+                <button onClick={()=>handelfiter('Lenovo')} className='text-xl p-1 px-5 rounded-lg hover:bg-slate-400 '>Lenevo</button>
+                <button onClick={()=>handelfiter('Asus')} className='text-xl p-1 px-5 rounded-lg hover:bg-slate-400 '>Asus</button>
             </div>
             <div className="product_card flex mt-5 flex-wrap gap-5">
                 {
                     data.map((item,i)=>(
 
-                <div key={i} className="singleCard w-[400px]  rounded-xl h-[280px] shadow-[-1px_1px_6px_4px_#fcdd2d] gap-4 flex mt-5 mb-10">
-                        <div className="card_img w-[200px] pt-9 h-full overflow-hidden bg-slate-300">
+                <div key={i} className="singleCard w-[400px]  rounded-xl h-[350px] shadow-[-1px_1px_6px_4px_#fcdd2d] gap-4 flex mt-5 mb-10">
+                        <div className="card_img w-[250px] pt-9 h-full overflow-hidden bg-slate-300">
                             <img src={item.image} alt="" />
                         </div>
                         <div className="card_text relative ">
@@ -42,8 +48,8 @@ console.log(bddata)
                                 <li className='text-yellow-400'>Display Size: {item.display_size}</li>
                                 <li className='text-yellow-400'>Color: {item.color}</li>
                             </ul>
-                            <h2 className='text-yellow-500 mt-6 '>Price: {item.price_in_tk}tk 
-                                 <span className='text-green-50'><br />Discount Price: {item.discount_price}</span>tk </h2>
+                            <h2 className='text-yellow-500 mt-5 '>Price: {item.price_in_tk}tk 
+                                 <span className='text-green-50 text-[14px] '><br />Discount Price: {item.discount_price}</span>tk </h2>
                         </div>
                 </div>
                     ))
